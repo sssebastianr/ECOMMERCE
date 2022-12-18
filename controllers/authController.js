@@ -11,7 +11,7 @@ exports.autenticarUsuario = async (req, res) => {
         let usuario = await Usuario.findOne({email});
 
         if(!usuario){
-            return res.status(404).json({msg:"el usuario ya existe"});
+            return res.status(404).json({msg:"el usuario no existe"});
         }
 
         //Revisar el password
@@ -31,7 +31,7 @@ exports.autenticarUsuario = async (req, res) => {
             payload,
             process.env.SECRETA,
             {
-                expiresIn: '30d',//1 hora
+                expiresIn: '30d',//30 dias
             },
             (error, token) =>{
                 if(error) throw error;

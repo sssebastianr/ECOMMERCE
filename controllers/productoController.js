@@ -1,28 +1,22 @@
 const categoria = require("../models/categoria");
 const Producto = require ("../models/producto");
 
-exports.crearProducto = async (req, res) => {
-
-    try {
-
-    const producto = new Producto(req.body);
-    producto.creador = req.usuario.id;
-    producto.save();
-    res.json(producto);    
-    }catch (error){
-        console.log(error);
-    }
-
-}
-
-exports.obtenerProducto = async (req, res) => {
+exports.crearProducto = async ( req, res) => {
     try{
-        const producto = await Producto.find({creador: req.usuario.id});
-        res.json({producto});
+        const producto = new Producto(req.body);
+        producto.save();
+        res.json(producto);
     }catch(error){
         console.log(error);
     }
-}
+};
+
+exports.obtenerProducto = async (req, res) => {
+    const {id} = req.params
+    const producto = await Producto.find().where("categoriaId").equals(id);
+    res.json(producto);
+
+};
 
 exports.actualizarProducto = async (req, res) => {
     const{id} = req.params;
@@ -32,7 +26,7 @@ exports.actualizarProducto = async (req, res) => {
     }
     if(producto.creado.toString() !==req.usuario.id.toString()){
         return res.status
-    }
+    }``
 
     
 }
