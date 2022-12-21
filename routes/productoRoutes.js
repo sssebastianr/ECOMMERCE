@@ -3,7 +3,7 @@ const router = express.Router();
 const authMidd = require("../middleware/authMidd"); 
 const productoController = require ("../controllers/productoController");
 
-router.get("/", productoController.obtenerProducto);
+router.get("/", productoController.obtenerProductoHome);
 router.get("/:id", authMidd, productoController.obtenerProducto);
 router.post("/", authMidd, productoController.crearProducto );
 router.put("/:id", authMidd, productoController.actualizarProducto);

@@ -1,6 +1,16 @@
 const categoria = require("../models/categoria");
 const Producto = require ("../models/producto");
 
+exports.obtenerProductoHome = async (req, res) => {
+    try{
+        const producto = await Producto.find();
+        res.json({producto});
+    }catch(error){
+        console.log(error);
+    }
+
+};
+
 exports.crearProducto = async ( req, res) => {
     try{
         const producto = new Producto(req.body);

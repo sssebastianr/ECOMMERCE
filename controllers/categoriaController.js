@@ -1,5 +1,15 @@
 const Categoria = require ("../models/categoria");
 
+exports.obtenerCategoriaHome = async (req, res) => {
+    try{
+        const categoria = await Categoria.find();
+        res.json({categoria});
+    }catch(error){
+        console.log(error);
+    }
+    
+};
+
 exports.crearCategoria = async (req, res) => {
 //req = Leemos lo que viene de Postman
 //res = Le escribimos o enviamos a Postman
@@ -27,6 +37,8 @@ exports.obtenerCategoriaId = async (req, res) =>{
     }
     
 };
+
+
 
 exports.obtenerCategoria = async (req, res) => {
     try{
